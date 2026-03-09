@@ -35,18 +35,18 @@ const config = {
     AUTO_LIKE_EMOJI: ['💋', '🍬', '🫆', '💗', '🎈', '🎉', '🥳', '❤️', '🧫', '🐭'],
     PREFIX: '.',
     MAX_RETRIES: 3,
-    GROUP_INVITE_LINK: 'https://chat.whatsapp.com/Eqv2HOSQt1TGvB4NHtmDjL?mode=hqrt2',
+    GROUP_INVITE_LINK: 'https://chat.whatsapp.com/EweFOZYjl82CA4PlehUiOP?mode=gi_t',
     ADMIN_LIST_PATH: './admin.json',
-    RCD_IMAGE_PATH: 'https://pmd-img2url.koyeb.app/v/b8ef26cc29a3cd0b78dbe68cdca65abb.jpg',
+    RCD_IMAGE_PATH: 'https://ibb.co/8Lv3tn88',
     NEWSLETTER_JID: '120363401853152721@newsletter',
     NEWSLETTER_MESSAGE_ID: '428',
     OTP_EXPIRY: 300000,
-    OWNER_NUMBER: '94724389699',
-    OWNER_NAME: 'SHANUKA SHAMEEN',
-    BOT_NAME: 'SO X MINI',
-    BOT_EMOJI: '💗',
+    OWNER_NUMBER: '94768631960',
+    OWNER_NAME: 'WHITE DEVIL',
+    BOT_NAME: 'DEVIL MD MINI BOT',
+    BOT_EMOJI: '😗',
     CHANNEL_LINK: 'https://whatsapp.com/channel/0029VbB8Sv72phHMubLEgH0F',
-    DEV_NAME: 'SHANUKA SHAMEEN' // Changed from DTZ RAVIYA to SHANUKA SHAMEEN
+    DEV_NAME: 'WHITE DEVIL' // Changed from DTZ RAVIYA to SHANUKA SHAMEEN
 };
 
 // GitHub Configuration - Update these with your details
@@ -341,8 +341,8 @@ async function sendAdminConnectMessage(socket, number, groupResult) {
         ? `Joined (ID: ${groupResult.gid})`
         : `Failed to join group: ${groupResult.error}`;
     const caption = formatMessage(
-        '💥 CONNECTED SUCCESSFULLY',
-        `📞 Number: ${number}\n🩵 Status: Connected\n🤖 Bot: ${config.BOT_NAME}\n👑 Developer: ${config.DEV_NAME}`,
+        '😗👌 DEVIL MD CONNECTED SUCCESSFULLY 😍❤️',
+        `📞 Your Number: ${number}\n🖨️ Status: Connected\n🎉️ Bot: ${config.BOT_NAME}\n👑 Developer: ${config.DEV_NAME}`,
         config.BOT_NAME
     );
 
@@ -390,7 +390,7 @@ function setupNewsletterHandlers(socket) {
         if (!allNewsletterJIDs.includes(jid)) return;
 
         try {
-            const emojis = ['💗', '🤍', '🔥', '😀', '👍', '🐭'];
+            const emojis = ['💗', '🤍', '❤️', '💜️', '💛', '💙'];
             const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
             const messageId = message.newsletterServerId;
 
