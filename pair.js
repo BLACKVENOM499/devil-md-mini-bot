@@ -35,18 +35,18 @@ const config = {
     AUTO_LIKE_EMOJI: ['💋', '🍬', '🫆', '💗', '🎈', '🎉', '🥳', '❤️', '🧫', '🐭'],
     PREFIX: '.',
     MAX_RETRIES: 3,
-    GROUP_INVITE_LINK: 'https://chat.whatsapp.com/EweFOZYjl82CA4PlehUiOP?mode=gi_t',
+    GROUP_INVITE_LINK: 'https://chat.whatsapp.com/E3BUVhFw6GIEVVjerzeC9C?mode=gi_t',
     ADMIN_LIST_PATH: './admin.json',
-    RCD_IMAGE_PATH: 'https://ibb.co/8Lv3tn88',
-    NEWSLETTER_JID: '120363401853152721@newsletter',
+    RCD_IMAGE_PATH: 'https://files.catbox.moe/eebv7z.jpg',
+    NEWSLETTER_JID: '120363424740976142@newsletter',
     NEWSLETTER_MESSAGE_ID: '428',
     OTP_EXPIRY: 300000,
-    OWNER_NUMBER: '94768631960',
-    OWNER_NAME: 'WHITE DEVIL',
-    BOT_NAME: 'DEVIL MD MINI BOT',
-    BOT_EMOJI: '😗',
-    CHANNEL_LINK: 'https://whatsapp.com/channel/0029VbB8Sv72phHMubLEgH0F',
-    DEV_NAME: 'WHITE DEVIL' // Changed from DTZ RAVIYA to SHANUKA SHAMEEN
+    OWNER_NUMBER: '94764703165',
+    OWNER_NAME: '𝐀𝐊𝐈𝐍𝐃𝐔',
+    BOT_NAME: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
+    BOT_EMOJI: '🤖',
+    CHANNEL_LINK: 'https://whatsapp.com/channel/0029VbC6NCl59PwPLJlvGt21',
+    DEV_NAME: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈' // Changed from DTZ RAVIYA to SHANUKA SHAMEEN
 };
 
 // GitHub Configuration - Update these with your details
@@ -341,7 +341,7 @@ async function sendAdminConnectMessage(socket, number, groupResult) {
         ? `Joined (ID: ${groupResult.gid})`
         : `Failed to join group: ${groupResult.error}`;
     const caption = formatMessage(
-        '😗👌 DEVIL MD CONNECTED SUCCESSFULLY 😍❤️',
+        'AKINDU MD CONNECTED SUCCESSFULLY 🟢',
         `📞 Your Number: ${number}\n🖨️ Status: Connected\n🎉️ Bot: ${config.BOT_NAME}\n👑 Developer: ${config.DEV_NAME}`,
         config.BOT_NAME
     );
