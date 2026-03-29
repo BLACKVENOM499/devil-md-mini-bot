@@ -720,7 +720,7 @@ function setupCommandHandlers(socket, number) {
 ╰───────────────────────
 `;
 
-                        const templateButtons = [
+                    const templateButtons = [    
         {
             buttonId: 'action',
             buttonText: {
@@ -733,32 +733,32 @@ function setupCommandHandlers(socket, number) {
                     title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ',
                     sections: [
                         {
-                            title: `𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔 📚`,
+                            title: `𝐌𝐄𝐍𝐔 𝐌𝐀𝐒𝐒𝐄𝐆𝐄 🤖`,
                             highlight_label: '',
                             rows: [
                                 {
-                                    title: 'DOWNLOAD COMMANDS',
-                                    description: '𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔 📥',
+                                    title: '📂 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔',
+                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
                                     id: `${config.PREFIX}download`,
                                 },
                                 {
-                                    title: 'CREATIVE COMMANDS',
-                                    description: '𝐂𝐑𝐄𝐀𝐓𝐈𝐕𝐄 𝐌𝐄𝐍𝐔 🛠️',
+                                    title: '🎨 𝐂𝐑𝐄𝐀𝐓𝐈𝐕𝐄 𝐌𝐄𝐍𝐔',
+                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
                                     id: `${config.PREFIX}creative`,
                                 },
                                 {
-                                    title: 'TOOLS COMMANDS',
-                                    description: '𝐓𝐎𝐎𝐋𝐒 𝐌𝐄𝐍𝐔 ✒️',
-                                    id: `${config.PREFIX}tools`,
+                                    title: '🛠️ 𝐓𝐎𝐎𝐋𝐒 𝐌𝐄𝐍𝐔',
+                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
+                                    id: `${config.PREFIX}tool`,
                                 },
                                 {
-                                    title: 'SETTING COMMANDS',
-                                    description: '𝐒𝐄𝐓𝐓𝐈𝐍𝐆𝐒 𝐌𝐄𝐍𝐔 ⚙️',
+                                    title: '⚙️ 𝐒𝐄𝐓𝐓𝐈𝐍𝐆𝐒 𝐌𝐄𝐍𝐔',
+                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
                                     id: `${config.PREFIX}setting`,
                                 },
                                 {
-                                    title: 'OWNER COMMANDS',
-                                    description: '𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔 👤',
+                                    title: '🥷 𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔',
+                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
                                     id: `${config.PREFIX}owner`,
                                 },
                             ],
@@ -774,11 +774,12 @@ function setupCommandHandlers(socket, number) {
         headerType: 1,
         viewOnce: true,
         image: { url: "https://files.catbox.moe/m94645.jpg" },
-        caption: `𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 𝐁𝐎𝐓 𝐌𝐄𝐍𝐔 📚\n${captionText}`,
+        caption: `𝐇𝐄𝐋𝐋𝐎 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐄𝐍𝐔 💐\n\n${captionText}`,
     }, { quoted: msg });
 
     break;
-}     
+}
+    
 
 
                 // ==================== PING COMMAND ====================
