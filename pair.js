@@ -24,7 +24,7 @@ const {
     prepareWAMessageMedia,
     generateWAMessageFromContent,
     S_WHATSAPP_NET
-} = require('@whiskeysockets/baileys');
+} = require('baileyz');
 
 // ==================== CONFIGURATION ====================
 const config = {
