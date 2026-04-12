@@ -639,7 +639,8 @@ function setupCommandHandlers(socket, number) {
     const seconds = Math.floor(uptime % 60);
     const channelStatus = config.NEWSLETTER_JID ? '✅ Followed' : '❌ Not followed';
 
-    const captionText = `╭───〘⛩ 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 ⛩〙───────
+    const captionText = `
+╭───〘⛩ 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 ⛩〙───────
 │
 │ 🌐 Version: 1.0.0
 │ 🤖 Owner : ᴀᴋɪɴᴅᴜ ᴍɪɴɪ
@@ -648,46 +649,53 @@ function setupCommandHandlers(socket, number) {
 │ 📞 Your Number: ${number}
 │ 📢 Channel: ${channelStatus}
 │
-╰────────────────────────────`;
+╰────────────────────────────
+`;
 
-    const buttons = [
+    const templateButtons = [    
         {
-            name: 'single_select',
-            buttonParamsJson: JSON.stringify({
-                title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ 📂',
-                sections: [
-                    {
-                        title: '𝐀𝐋𝐈𝐕𝐄 𝐌𝐄𝐒𝐒𝐀𝐆𝐄 🤖',
-                        rows: [
-                            {
-                                title: 'MENU 📚',
-                                description: 'View all bot commands',
-                                id: `${config.PREFIX}menu`,
-                            },
-                            {
-                                title: 'OWNER 👤',
-                                description: 'Contact the developer',
-                                id: `${config.PREFIX}owner`,
-                            },
-                        ],
-                    },
-                ],
-            }),
+            buttonId: 'action',
+            buttonText: {
+                displayText: '📂 Menu Options'
+            },
+            type: 4,
+            nativeFlowInfo: {
+                name: 'single_select',
+                paramsJson: JSON.stringify({
+                    title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ',
+                    sections: [
+                        {
+                            title: `𝐀𝐋𝐈𝐕𝐄 𝐌𝐀𝐒𝐒𝐄𝐆𝐄 🤖`,
+                            highlight_label: '',
+                            rows: [
+                                {
+                                    title: 'MENU 📚',
+                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
+                                    id: `${config.PREFIX}menu`,
+                                },
+                                {
+                                    title: 'OWNER 👤',
+                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
+                                    id: `${config.PREFIX}owner`,
+                                },
+                            ],
+                        },
+                    ],
+                }),
+            },
         }
     ];
 
     await socket.sendMessage(m.chat, {
+        buttons: templateButtons,
+        headerType: 1,
+        viewOnce: true,
         image: { url: "https://files.catbox.moe/m94645.jpg" },
         caption: `𝐇𝐄𝐋𝐋𝐎 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 𝐀𝐋𝐈𝐕𝐄 𝐍𝐎𝐖 💐\n\n${captionText}`,
-        footer: 'ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴀᴋɪɴᴅᴜ ᴍɪɴɪ',
-        buttons: buttons,
-        headerType: 4,
-        viewOnce: true
     }, { quoted: msg });
 
     break;
-}
-                case 'menu': {
+}                case 'menu': {
     
     const captionText = `
 ➤ Available Commands..!! 🌐💭\n\n┏━━━━━━━━━━━ ◉◉➢\n┇ *\`${config.PREFIX}alive\`*\n┋ • Show bot status\n┋\n┋ *\`${config.PREFIX}Song\`*\n┋ • Downlode Songs\n┋\n┋ *\`${config.PREFIX}winfo\`*\n┋ • Get User Profile Picture\n┋\n┋ *\`${config.PREFIX}aiimg\`*\n┋ • Genarate Ai Image\n┋\n┋ *\`${config.PREFIX}logo\`*\n┋ • Create Logo\n┋\n┋ *\`${config.PREFIX}fancy\`*\n┋ • View Fancy Text\n┋\n┋ *\`${config.PREFIX}tiktok\`*\n┋ • Downlode tiktok video\n┋\n┋ *\`${config.PREFIX}fb\`*\n┋ • Downlode facebook video\n┋\n┋ *\`${config.PREFIX}ig\`*\n┋ • Downlode instagram video\n┋\n┋ *\`${config.PREFIX}ai\`*\n┋ • New Ai Chat\n┋\n┋ *\`${config.PREFIX}nasa\`*\n┋ • View latest nasa news update\n┋\n┋ *\`${config.PREFIX}gossip\`*\n┋ • View gossip news update\n┋\n┋ \`${config.PREFIX}cricket\`\n┇ • cricket news updates\n┇\n┇ *\`${config.PREFIX}bomb\`*\n┇• Send Bomb Massage\n┋\n┋ *\`${config.PREFIX}pair\`*\n┋ • Get Pair Code\n┇\n┇ *\`${config.PREFIX}deleteme\`*\n┇• Delete your session\n┋\n┗━━━━━━━━━━━ ◉◉➣\n\n*▫️ravana mini Bot Web 🌐*\n> https://ravana-project.netify.app/
