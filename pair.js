@@ -630,7 +630,7 @@ function setupCommandHandlers(socket, number) {
         try {
             switch (command) {
                 // ==================== ALIVE COMMAND ====================
-			}     
+			    
 				case 'alive': {
     const startTime = socketCreationTime.get(number) || Date.now();
     const uptime = Math.floor((Date.now() - startTime) / 1000);
