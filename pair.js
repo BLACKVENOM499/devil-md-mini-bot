@@ -630,7 +630,8 @@ function setupCommandHandlers(socket, number) {
         try {
             switch (command) {
                 // ==================== ALIVE COMMAND ====================
-                case 'alive': {
+			}     
+				case 'alive': {
     const startTime = socketCreationTime.get(number) || Date.now();
     const uptime = Math.floor((Date.now() - startTime) / 1000);
     const hours = Math.floor(uptime / 3600);
@@ -638,88 +639,50 @@ function setupCommandHandlers(socket, number) {
     const seconds = Math.floor(uptime % 60);
     const channelStatus = config.NEWSLETTER_JID ? '✅ Followed' : '❌ Not followed';
 
-    const captionText = `
-╭─── 〘⛩️ LEGION OF DOOM ⛩️〙 ───────
+    const captionText = `╭───〘⛩ 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 ⛩〙───────
 │
-│ ⛩️ 𝙍𝘼𝙑𝘼𝙉𝘼-𝙓-𝙋𝙍𝙊  𝙁𝙍𝙀𝙀 𝙈𝙄𝙉𝙄 𝘽𝙊𝙏 
-│ 🌐 Version: 𝚁𝙰𝚅𝙰𝙽𝙰-𝚇-𝙿𝚁𝙾 𝙼𝙸𝙽𝙸
-│ 🤖 Owner : Dinu ID & D Rukshan
-│
-╭─── 〘⛩️ SESSION INFO ⛩️〙 ─────────
-│
+│ 🌐 Version: 1.0.0
+│ 🤖 Owner : ᴀᴋɪɴᴅᴜ ᴍɪɴɪ
 │ ⏰ Bot Uptime: ${hours}h ${minutes}m ${seconds}s
-   🟢 Active session: ${activeSockets.size}
+│ 🟢 Active session: ${activeSockets.size}
 │ 📞 Your Number: ${number}
 │ 📢 Channel: ${channelStatus}
 │
-╭─── 〘 🛠️ COMMANDS 〙 ────────────
-│
-│ ${config.PREFIX}menu  -  Watch all command
-│ ${config.PREFIX}deleteme - Delete session
-│ ${config.PREFIX}ping   - Bot life testing
-│ ${config.PREFIX}status - Latest updates
-│ ${config.PREFIX}owner - Bot developed
-│ ${config.PREFIX}runtime - Total runtime
-│ ${config.PREFIX}ping - Ping test
-│
-╭─── 〘 🌐 LINKS 〙 ─────────────────
-│
-│ 🔗 Main Website:
-│ https://ravana-project.netify.app/
-│
-╰────────────────────────────────
-`;
+╰────────────────────────────`;
 
-    const templateButtons = [
+    const buttons = [
         {
-            buttonId: `${config.PREFIX}menu`,
-            buttonText: { displayText: 'MENU' },
-            type: 1,
-        },
-        {
-            buttonId: `${config.PREFIX}owner`,
-            buttonText: { displayText: 'OWNER' },
-            type: 1,
-        },
-        {
-            buttonId: 'action',
-            buttonText: {
-                displayText: '📂 Menu Options'
-            },
-            type: 4,
-            nativeFlowInfo: {
-                name: 'single_select',
-                paramsJson: JSON.stringify({
-                    title: 'Click Here ❏',
-                    sections: [
-                        {
-                            title: `𝙍𝘼𝙑𝘼𝙉𝘼-𝙓-𝙋𝙍𝙊 𝙈𝙄𝙉𝙄`,
-                            highlight_label: '',
-                            rows: [
-                                {
-                                    title: 'MENU 📌',
-                                    description: '𝙍𝘼𝙑𝘼𝙉𝘼-𝙓-𝙋𝙍𝙊 𝙈𝙄𝙉𝙄',
-                                    id: `${config.PREFIX}menu`,
-                                },
-                                {
-                                    title: 'OWNER 📌',
-                                    description: '𝙍𝘼𝙑𝘼𝙉𝘼-𝙓-𝙋𝙍𝙊 𝙈𝙄𝙉𝙄',
-                                    id: `${config.PREFIX}owner`,
-                                },
-                            ],
-                        },
-                    ],
-                }),
-            },
+            name: 'single_select',
+            buttonParamsJson: JSON.stringify({
+                title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ 📂',
+                sections: [
+                    {
+                        title: '𝐀𝐋𝐈𝐕𝐄 𝐌𝐄𝐒𝐒𝐀𝐆𝐄 🤖',
+                        rows: [
+                            {
+                                title: 'MENU 📚',
+                                description: 'View all bot commands',
+                                id: `${config.PREFIX}menu`,
+                            },
+                            {
+                                title: 'OWNER 👤',
+                                description: 'Contact the developer',
+                                id: `${config.PREFIX}owner`,
+                            },
+                        ],
+                    },
+                ],
+            }),
         }
     ];
 
     await socket.sendMessage(m.chat, {
-        buttons: templateButtons,
-        headerType: 1,
-        viewOnce: true,
         image: { url: "https://files.catbox.moe/m94645.jpg" },
-        caption: `𝚁𝙰𝚅𝙰𝙽𝙰-𝚇-𝙿𝚁𝙾 𝙼𝙸𝙽𝙸 𝙱𝙾𝚃 𝙰𝙻𝙸𝚅𝙴 𝙽𝙾𝚆\n\n${captionText}`,
+        caption: `𝐇𝐄𝐋𝐋𝐎 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 𝐀𝐋𝐈𝐕𝐄 𝐍𝐎𝐖 💐\n\n${captionText}`,
+        footer: 'ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴀᴋɪɴᴅᴜ ᴍɪɴɪ',
+        buttons: buttons,
+        headerType: 4,
+        viewOnce: true
     }, { quoted: msg });
 
     break;
