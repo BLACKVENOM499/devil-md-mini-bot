@@ -638,60 +638,50 @@ function setupCommandHandlers(socket, number) {
     const seconds = Math.floor(uptime % 60);
     const channelStatus = config.NEWSLETTER_JID ? '✅ Followed' : '❌ Not followed';
 
-    const captionText = `
-╭───〘⛩ 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 ⛩〙───────
+    const captionText = `╭───〘⛩ 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 ⛩〙───────
 │
 │ 🌐 Version: 1.0.0
 │ 🤖 Owner : ᴀᴋɪɴᴅᴜ ᴍɪɴɪ
-│
 │ ⏰ Bot Uptime: ${hours}h ${minutes}m ${seconds}s
 │ 🟢 Active session: ${activeSockets.size}
 │ 📞 Your Number: ${number}
 │ 📢 Channel: ${channelStatus}
 │
-╰────────────────────────────
-`;
+╰────────────────────────────`;
 
-    const templateButtons = [    
+    const buttons = [
         {
-            buttonId: 'action',
-            buttonText: {
-                displayText: '📂 Menu Options'
-            },
-            type: 4,
-            nativeFlowInfo: {
-                name: 'single_select',
-                paramsJson: JSON.stringify({
-                    title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ',
-                    sections: [
-                        {
-                            title: `𝐀𝐋𝐈𝐕𝐄 𝐌𝐀𝐒𝐒𝐄𝐆𝐄 🤖`,
-                            highlight_label: '',
-                            rows: [
-                                {
-                                    title: 'MENU 📚',
-                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
-                                    id: `${config.PREFIX}menu`,
-                                },
-                                {
-                                    title: 'OWNER 👤',
-                                    description: '𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈',
-                                    id: `${config.PREFIX}owner`,
-                                },
-                            ],
-                        },
-                    ],
-                }),
-            },
+            name: 'single_select',
+            buttonParamsJson: JSON.stringify({
+                title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ 📂',
+                sections: [
+                    {
+                        title: '𝐀𝐋𝐈𝐕𝐄 𝐌𝐄𝐒𝐒𝐀𝐆𝐄 🤖',
+                        rows: [
+                            {
+                                title: 'MENU 📚',
+                                description: 'View all bot commands',
+                                id: `${config.PREFIX}menu`,
+                            },
+                            {
+                                title: 'OWNER 👤',
+                                description: 'Contact the developer',
+                                id: `${config.PREFIX}owner`,
+                            },
+                        ],
+                    },
+                ],
+            }),
         }
     ];
 
     await socket.sendMessage(m.chat, {
-        buttons: templateButtons,
-        headerType: 1,
-        viewOnce: true,
         image: { url: "https://files.catbox.moe/m94645.jpg" },
         caption: `𝐇𝐄𝐋𝐋𝐎 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 𝐀𝐋𝐈𝐕𝐄 𝐍𝐎𝐖 💐\n\n${captionText}`,
+        footer: 'ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴀᴋɪɴᴅᴜ ᴍɪɴɪ',
+        buttons: buttons,
+        headerType: 4,
+        viewOnce: true
     }, { quoted: msg });
 
     break;
