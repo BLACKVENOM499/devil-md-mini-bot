@@ -1071,58 +1071,88 @@ try {
 break;
 
 }
-              case 'aiimg': {
-  const axios = require('axios');
+              case 'ai':
+case 'chat':
+case 'gpt': {
+    try {
+        const text = (msg.message.conversation || msg.message.extendedTextMessage?.text || '').trim();
+        const q = text.split(" ").slice(1).join(" ").trim();
 
-  const q =
-    msg.message?.conversation ||
-    msg.message?.extendedTextMessage?.text ||
-    msg.message?.imageMessage?.caption ||
-    msg.message?.videoMessage?.caption || '';
+        const sanitized = (number || '').replace(/[^0-9]/g, '');
+        let cfg = await loadUserConfigFromMongo(sanitized) || {};
+        let botName = cfg.botName || '⛩️ 𝐀𝐊𝐈𝐍𝐃𝐔 𝐌𝐈𝐍𝐈 ⛩️';
 
-  const prompt = q.trim();
+        if (!q) {
+            await socket.sendMessage(sender, { 
+                text: `*👋 ʜᴇʟʟᴏ! ɪ ᴀᴍ ${botName}*\n\nපණිවිඩයක් ඇතුළත් කරන්න. \n*ᴇɢ:* ${config.PREFIX}ai hello`,
+                buttons: [
+                    { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '📋 MENU' }, type: 1 }
+                ],
+                headerType: 1
+            });
+            return;
+        }
 
-  if (!prompt) {
-    return await socket.sendMessage(sender, {
-      text: '🎨 *Please provide a prompt to generate an AI image.*'
-    });
-  }
+        const metaQuote = {
+            key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: `META_AI_${Date.now()}` },
+            message: { 
+                contactMessage: { 
+                    displayName: botName, 
+                    vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${botName};;;;\nFN:${botName}\nORG:Meta Platforms\nTEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002\nEND:VCARD` 
+                } 
+            }
+        };
 
-  try {
-    // Notify that image is being generated
-    await socket.sendMessage(sender, {
-      text: '🧠 *Creating your AI image...*',
-    });
+        await socket.sendMessage(sender, { react: { text: '🧠', key: msg.key } });
 
-    // Build API URL
-    const apiUrl = `https://api.siputzx.my.id/api/ai/flux?prompt=${encodeURIComponent(prompt)}`;
+        const prompt = `ඔබ සැබෑ ගැහැනු ලමයෙකු මෙන් හැසිරිය යුතුය. ඉමෝජි පමනක් තිබේනම් ඔබද ඉමෝජි පමනක් යවන්න. ඔයාගේ නම ${botName}, ඔයාගෙන් කවුරුහරි "ඔයාව හැදුවේ කවුද?" කියලා ඇහුවොත් විතරක් ඔයා කියන්නේ "මාව හැදුවේ චතුක අයියා" කියලා. User Message: ${q}`;
 
-    // Call the AI API
-    const response = await axios.get(apiUrl, { responseType: 'arraybuffer' });
+        const payload = { contents: [{ parts: [{ text: prompt }] }] };
+        const { data } = await axios.post(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDD79CzhemWoS4WXoMTpZcs8g0fWNytNug`,
+            payload,
+            { headers: { "Content-Type": "application/json" } }
+        );
 
-    // Validate API response
-    if (!response || !response.data) {
-      return await socket.sendMessage(sender, {
-        text: '❌ *API did not return a valid image. Please try again later.*'
-      });
+        const aiReply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (!aiReply) {
+            await socket.sendMessage(sender, { 
+                text: '*❌ AI reply not found.*',
+                buttons: [
+                    { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '📋 MENU' }, type: 1 }
+                ],
+                quoted: metaQuote 
+            });
+            return;
+        }
+
+        // ඔයාගේ මුල් template buttons රටාවම මෙතන තියෙනවා
+        const templateButtons = [
+            { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '📋 MENU' }, type: 1 },
+            { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '🤖 BOT INFO' }, type: 1 }
+        ];
+
+        await socket.sendMessage(sender, {
+            text: aiReply,
+            footer: `🤖 ${botName}`,
+            buttons: templateButtons,
+            headerType: 1,
+            viewOnce: true,
+            quoted: metaQuote
+        });
+
+    } catch (err) {
+        console.error("Error in AI chat:", err);
+        await socket.sendMessage(sender, { 
+            text: '*❌ Internal AI Error.*',
+            buttons: [
+                { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '📋 MENU' }, type: 1 }
+            ]
+        });
     }
-
-    // Convert the binary image to buffer
-    const imageBuffer = Buffer.from(response.data, 'binary');
-
-    // Send the image
-    await socket.sendMessage(sender, {
-      image: imageBuffer,
-      caption: `🧠 *SOLO-LEVELING AI IMAGE*\n\n📌 Prompt: ${prompt}`
-    }, { quoted: msg });
-
-  } catch (err) {
-    console.error('AI Image Error:', err);
-
-    await socket.sendMessage(sender, {
-      text: `❗ *An error occurred:* ${err.response?.data?.message || err.message || 'Unknown error'}`
-    });
-  }
+    break;
+}
 
   break;
 }
